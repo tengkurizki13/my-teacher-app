@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const userRoutes = require("./userRoutes");
+const courseRoutes = require("./courseRoutes");
 const authentication = require("../middleware/authentication");
 
 router.use(userRoutes);
+router.use(courseRoutes);
 router.use(authentication);
 
 const errorHandler = (error, req, res, next) => {
