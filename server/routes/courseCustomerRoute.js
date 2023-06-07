@@ -13,7 +13,6 @@ router.get(
   "/customer/courses/:id",
   CustomerController.getAllCustomerCourseDetail
 );
-
 router.post("/generate-midtrans-token", CustomerController.paymentGateway);
 
 module.exports = router;

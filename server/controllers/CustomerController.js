@@ -3,6 +3,8 @@ const { comparePassword } = require("../helpers/bcryptjs");
 const { encodedJson } = require("../helpers/webToken");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.CLIENT_GOOGLE_ID);
+const midtransClient = require("midtrans-client");
+const { Op } = require("sequelize");
 
 class CustomerController {
   static async register(req, res, next) {
@@ -125,17 +127,18 @@ class CustomerController {
   static async getAllCustomerCourseDetail(req, res, next) {
     try {
       const { id } = req.params;
-      console.log(req.customer.id);
       let customerCourse = await CustomerCourse.findOne({
         include: { model: Course },
         where: {
           [Op.and]: [{ CustomerId: req.customer.id }, { id }],
         },
       });
+      console.log(req.customer.id);
 
       if (!customerCourse) throw { name: "notFound" };
       res.status(200).json(customerCourse);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }

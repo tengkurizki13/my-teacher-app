@@ -2,11 +2,15 @@ const express = require("express");
 const router = express.Router();
 const userRoutes = require("./userRoutes");
 const courseRoutes = require("./courseRoutes");
+const videoRoutes = require("./videoRoutes");
+const courseCustomerRoute = require("./courseCustomerRoute");
 const authentication = require("../middleware/authentication");
 
 router.use(userRoutes);
 router.use(courseRoutes);
 router.use(authentication);
+router.use(courseCustomerRoute);
+router.use(videoRoutes);
 
 const errorHandler = (error, req, res, next) => {
   let status = 500;
