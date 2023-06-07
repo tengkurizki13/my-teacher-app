@@ -3,6 +3,7 @@ const ApiVideoClient = require("@api.video/nodejs-client");
 const apivideoClient = new ApiVideoClient({
   apiKey: "vtvdhxabD5c1GHkh9dgRJMQlHO8s7cPkbVb7ygxP7P9",
 });
+const { Op } = require("sequelize");
 
 class CourseController {
   static async uploadVideo(req, res, next) {
@@ -72,7 +73,12 @@ class CourseController {
 
   static async getAllCourse(req, res, next) {
     try {
-      let courses = await Course.findAll();
+      const { search } = req.query;
+
+      let option = {
+        where: { title: { [Op.iLike]: `%${search}%` } },
+      };
+      let courses = await Course.findAll(option);
       res.status(200).json(courses);
     } catch (error) {
       next(error);

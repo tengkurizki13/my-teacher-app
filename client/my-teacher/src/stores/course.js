@@ -10,12 +10,13 @@ export const useCourseStore = defineStore('course', {
     double: (state) => state.count * 2
   },
   actions: {
-    async getAllCourse() {
+    async getAllCourse(search = '') {
       try {
         let courses = await axios({
           method: 'get',
-          url: this.url + `/courses`
+          url: this.url + `/courses?search=` + search
         })
+        console.log(courses)
         this.courses = courses.data
       } catch (error) {
         console.log(error)

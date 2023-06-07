@@ -26,7 +26,7 @@ export default {
   },
   watch: {
     // whenever question changes, this function will run
-    course(newCourse, oldCourse) {
+    course(newCourse) {
       this.videoSrc  = "//embed.api.video/vod/" + newCourse.Course.videoId
      console.log(newCourse);
     }

@@ -14,11 +14,14 @@ export default {
   data() {
     return {
       currentPagination: 0,
-      filter: ""
+      search: ""
     }
   },
   methods: {
-    ...mapActions(useCourseStore, ['getAllCourse'])
+    ...mapActions(useCourseStore, ['getAllCourse']),
+    findByFilter(){
+      this.getAllCourse(this.search)
+    }
   },
   computed: {
     ...mapState(useCourseStore, ['courses'])
@@ -34,8 +37,8 @@ export default {
   <div class="container">
     <div class="row mb-5">
       <div class="col-5"> 
-        <form class="d-flex" role="search" @submit.prevent="changePaginationAndFilter()">
-        <input v-model="filter" class="form-control me-2" type="search" placeholder="filter by name" aria-label="Search">
+        <form class="d-flex" role="search" @submit.prevent="findByFilter">
+        <input v-model="search" class="form-control me-2" type="search" placeholder="filter by title" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
        </form>
       </div>
