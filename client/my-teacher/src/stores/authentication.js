@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const useAuthenticationStore = defineStore('authentication', {
   state: () => ({
-    url: 'http://localhost:3000',
+    url: 'https://my-teacher.tengkurizki.my.id',
     email: '',
     password: ''
   }),
@@ -30,6 +30,7 @@ export const useAuthenticationStore = defineStore('authentication', {
           timer: 1500
         })
       } catch (error) {
+        console.log(error)
         Swal.fire({
           icon: 'error',
           title: `${error.response.data.message}`

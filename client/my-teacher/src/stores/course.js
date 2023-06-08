@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const useCourseStore = defineStore('course', {
   state: () => ({
-    url: 'http://localhost:3000',
+    url: 'https://my-teacher.tengkurizki.my.id',
     courses: []
   }),
   getters: {
