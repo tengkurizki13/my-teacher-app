@@ -9,11 +9,12 @@ class CourseController {
   static async uploadVideo(req, res, next) {
     // Grab the file from the request
     const file = req.file;
+    const { title, Description } = req.query;
     try {
       // the video title and description
       const videoCreationPayload = {
-        title: "Course Programming",
-        Description: "Something I wanted to share",
+        title,
+        Description,
       };
       // create a video object first
       const video = await apivideoClient.videos.create(videoCreationPayload);

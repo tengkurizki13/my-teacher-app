@@ -8,9 +8,9 @@ const authentication = require("../middleware/authentication");
 
 router.use(userRoutes);
 router.use(courseRoutes);
+router.use(videoRoutes);
 router.use(authentication);
 router.use(courseCustomerRoute);
-router.use(videoRoutes);
 
 const errorHandler = (error, req, res, next) => {
   let status = 500;
